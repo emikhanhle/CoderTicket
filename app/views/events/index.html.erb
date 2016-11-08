@@ -1,9 +1,10 @@
 <div class='events-header' style='background-image: url(<%= header_background_image_url %>)'>
   <div class="container">
     <h2> Discover upcoming events </h2>
-    <form>
-      <input type="text" class="form-control" name="search" placeholder="Search for events, shows, courses...">
-    </form>
+    <%= form_tag events_path, :method => "get" do %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Search for events, shows, courses..." %>
+    <%= submit_tag "", :style => "display: none;" %>
+    <% end %>
   </div>
 </div>
 <div class="container-fluid events-list">
@@ -12,7 +13,7 @@
         <% g.compact.each do |e| %>
             <%= render partial: 'card', locals: {event: e} %>
         <% end %>
-      </div>  
+      </div>
     <% end %>
   </div>
 </div>

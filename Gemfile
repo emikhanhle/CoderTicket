@@ -37,6 +37,8 @@ gem 'simple_form'
 gem 'better_errors', group: :development
 gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
+gem 'bcrypt', '~> 3.1.7'
+gem 'devise'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -59,4 +61,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

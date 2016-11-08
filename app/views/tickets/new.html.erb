@@ -14,27 +14,35 @@
       <div class="pull-left">
         <%= fa_icon 'clock-o' %>
       </div>
-      <div class="time-details"> 
-        <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
+      <div class="time-details">
+        <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %>
       </div>
 
 
     </div>
   </div>
   <div class="row">
-    <div class="col-md-11 col-md-offset-1">  
+    <div class="col-md-11 col-md-offset-1">
       <table class="table">
         <th> Ticket Type </th>
         <th> Unit Price </th>
         <th> Quantity </th>
-      
-        <% @event.ticket_types.each do |type| %>
-        <tr>
-          <td> <%= type.name %> </td>
-          <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-          <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
-        </tr>
-        <% end %> 
+        <th></th>
+        <!-- <%# form_tag user_tickets_path, method: "post" do %> -->
+
+          <% @event.ticket_types.each do |type| %>
+          <%= form_for UserTicket.new, url: user_tickets_path do |f| %>
+          <tr>
+            <td> <%= type.name %> </td>
+            <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
+            <!-- <td> <%# select_tag('quantity', options_for_select(0..10, :selected => params[:quanity])) %> </td> -->
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :ticket_type_id, :value => type.id %>
+            <td> <%= f.select :quantity, options_for_select(0..10) %> </td>
+            <td> <%= f.submit "Buy", class: "btn btn-success" %> </td>
+          </tr>
+          <% end %>
+        <% end %>
       </table>
     </div>
   </div>
@@ -43,5 +51,4 @@
       <button class="btn btn-success btn-lg btn-block"> Buy </button>
     </div>
   <div>
-</div>  
-
+</div>

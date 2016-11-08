@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
 
+
   resources :users, only: [:new, :create]
   resources :sessions, only: [:create]
+  resources :user_tickets, only: [:new, :create]
 
   resources :events do
     resources :tickets

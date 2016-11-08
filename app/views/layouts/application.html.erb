@@ -26,6 +26,14 @@
     </ul>
   </nav>
 
+  <% unless flash.empty? %>
+  <br />
+  <br />
+  <br />
+      <% flash.each do |key, value| %>
+        <div class="alert alert-warning"><%= value %></div>
+      <% end %>
+  <% end %>
 <%= yield %>
 
 </body>

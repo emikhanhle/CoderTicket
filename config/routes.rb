@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :user_tickets, only: [:new, :create]
 
   resources :events do
+    member do
+      get 'published'
+    end
     resources :tickets
   end
 

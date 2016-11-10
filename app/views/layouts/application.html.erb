@@ -19,9 +19,15 @@
           <%= link_to "Sign up", new_user_path, class: "nav-link"%>
         </li>
       <% else %>
-      <li class="nav-item">
-        <%= link_to "Log out", logout_path, method: "delete", class: "nav-link" %>
-      </li>
+        <li class="nav-item">
+          <%= link_to "Log out", logout_path, method: "delete", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Event", new_event_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Venue", new_event_path, class: "nav-link" %>
+        </li>
       <% end %>
     </ul>
   </nav>

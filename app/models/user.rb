@@ -3,4 +3,5 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: {case_insensitive: false}
   has_secure_password
   has_many :user_tickets
+  has_many :events
 end

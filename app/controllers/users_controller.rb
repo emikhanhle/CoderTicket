@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user!
+  include SessionsHelper
 
+  def index
+    redirect_to login_path if !logged_in?
+  end
   def new
     @user = User.new
   end

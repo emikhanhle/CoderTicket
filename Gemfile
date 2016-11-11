@@ -39,6 +39,7 @@ gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
+gem 'rails-controller-testing'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -52,6 +53,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'simplecov', '~> 0.12.0', require: false
   gem 'guard-rspec', require: false
+  gem 'factory_girl'
+
 end
 
 group :development do

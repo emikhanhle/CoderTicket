@@ -11,4 +11,12 @@ class Event < ActiveRecord::Base
     where("name LIKE ?", "%#{search}%")
   end
 
+  def self.upcoming
+    where("ends_at > ?", Time.now).published
+  end
+
+  def self.published
+    where.not(published_at: nil)
+  end
+
 end

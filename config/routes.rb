@@ -8,11 +8,17 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :sessions, only: [:create]
   resources :user_tickets, only: [:new, :create]
+  resources :venues, only: [:new, :create]
 
   resources :events do
+    collection do
+      get 'mine'  
+    end
+
     member do
       get 'published'
     end
+
     resources :tickets
   end
 

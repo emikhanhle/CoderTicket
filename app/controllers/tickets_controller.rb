@@ -11,7 +11,7 @@ class TicketsController < ApplicationController
     @ticket_type = TicketType.new ticket_params
     @ticket_type.event_id = params[:event_id]
     if @ticket_type.save
-      redirect_to new_event_tickets_path(params[:event_id]), notice: "Added successfully"
+      redirect_to new_event_ticket_path(params[:event_id]), notice: "Added successfully"
     else
       redirect_to :back, notice: "Added error"
     end

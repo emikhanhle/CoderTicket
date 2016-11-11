@@ -6,21 +6,25 @@ class UserTicketsController < ApplicationController
   def create
     @user_ticket = UserTicket.new user_ticket_params
     @remain_tickets = remain_tickets(@user_ticket.ticket_type_id)
-    if @user_ticket.quantity <= @remain_tickets
-      if @user_ticket.save
-        redirect_to root_path, notice: "Buy successfully"
+    if logged_in?
+      @user_ticket.user_id = current_user.id
+      if @user_ticket.quantity <= @remain_tickets
+        if @user_ticket.save
+          redirect_to root_path, notice: "Buy successfully"
+        else
+          redirect_to :back, notice: "Buy Error"
+        end
       else
-        redirect_to :back, notice: "Buy Error"
+        redirect_to :back, notice: "Not enough ticket"
       end
     else
-      redirect_to :back, notice: "Not enough ticket"
+      redirect_to login_path
     end
-
   end
 
   private
   def user_ticket_params
-    params.require(:user_ticket).permit(:user_id, :ticket_type_id, :quantity)
+    params.require(:user_ticket).permit(:ticket_type_id, :quantity)
   end
 
   def remain_tickets(ticket_type_id)

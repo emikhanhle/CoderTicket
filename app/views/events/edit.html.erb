@@ -1,0 +1,13 @@
+<br />
+<br />
+<br />
+<h1>Edit Event</h1>
+<div class="form">
+  <%= form_for @event, :url => event_path(@event), :method => :put do |f| %>
+  <%= render partial: "form", :locals => {f: f}  %>
+  <div class="form-group form-inline">
+    <%= f.submit "Update Event", class: "btn btn-success" %>
+    <%= link_to "Cancel", root_path, class: "btn btn-warning" %>
+  </div>
+  <% end %>
+</div>

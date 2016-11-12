@@ -23,6 +23,9 @@
           <%= link_to edit_event_path(@event) do %>
             <button class='btn btn-lg btn-block btn-warning'> UPDATE INFO </button>
           <% end %>
+          <%= link_to new_event_ticket_path(@event) do %>
+            <button class='btn btn-lg btn-block btn-success'> NEW TYPE TICKET </button>
+          <% end %>
         <% end %>
         <% if !is_published? && is_publisher? %>
           <%= link_to published_event_path(@event) do %>

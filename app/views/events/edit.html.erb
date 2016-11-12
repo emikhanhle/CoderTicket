@@ -7,7 +7,7 @@
   <%= render partial: "form", :locals => {f: f}  %>
   <div class="form-group form-inline">
     <%= f.submit "Update Event", class: "btn btn-success" %>
-    <%= link_to "Cancel", root_path, class: "btn btn-warning" %>
+    <%= link_to "Cancel", :back, class: "btn btn-warning" %>
   </div>
   <% end %>
 </div>

@@ -2,10 +2,10 @@ class EventsController < ApplicationController
   helper_method :is_published?
   helper_method :is_publisher?
   def index
-    @events = Event.where('starts_at >= :now', :now => Time.now).where.not("published_at" => nil)
-    if current_user
-      @events = Event.where('starts_at >= :now OR user_id = :user_id', :now => Time.now, :user_id => current_user.id)
-    end
+    @events = Event.where('ends_at >= :now', :now => Time.now).where.not("published_at" => nil)
+    # if current_user
+    #   @events = Event.where('ends_at >= :now OR user_id = :user_id', :now => Time.now, :user_id => current_user.id)
+    # end
     if params[:search]
       @events = Event.search(params[:search])
     end

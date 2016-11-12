@@ -9,10 +9,14 @@ class UserTicketsController < ApplicationController
     if logged_in?
       @user_ticket.user_id = current_user.id
       if @user_ticket.quantity <= @remain_tickets
-        if @user_ticket.save
-          redirect_to root_path, notice: "Buy successfully"
+        if @user_ticket.quantity > 0
+          if @user_ticket.save
+            redirect_to root_path, notice: "Buy successfully"
+          else
+            redirect_to :back, notice: "Buy Error"
+          end
         else
-          redirect_to :back, notice: "Buy Error"
+          redirect_to :back, notice: "Does not choose quantity yet"
         end
       else
         redirect_to :back, notice: "Not enough ticket"
